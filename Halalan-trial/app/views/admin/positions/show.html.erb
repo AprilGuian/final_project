@@ -1,0 +1,37 @@
+<% provide(:position, "active") %>
+<% provide(:title, "#{@position.name}" ) %> 
+
+<style>
+	p{
+		margin-bottom: 0;
+		padding-bottom: 0;
+	    display:inline;
+	}
+	h1{
+	    display:inline
+	}
+</style>
+
+<div class="container">
+  	<div class="row">
+    	<div class="col-md-12">	
+			<h1><font size="20"><%= @position.name%></font></h1>
+			<p>
+			<%=link_to "Edit", edit_admin_position_path(@position.id)%>
+			<%=link_to "Delete", admin_position_path(@position.id), method: :delete%>
+			</p>
+
+			<hr>
+			<h2>Candidates for <%=@position.name%></h2>
+
+			<ul>
+				<%@position.candidates.each do |c|%>
+				    <li><%=link_to c.full_name, admin_candidate_path(c.id)%></li>
+				<%end%>
+			</ul>
+			<br>
+
+			<%= link_to "< Back to Positions", admin_positions_path %>
+		</div>
+	</div>
+</div>

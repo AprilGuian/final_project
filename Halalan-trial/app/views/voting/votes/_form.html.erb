@@ -1,0 +1,14 @@
+<%
+	if @pos == nil 
+		@pos = 0..99
+	else
+
+	end
+%>
+
+<%= simple_form_for([:voting, @vote]) do |f| %>
+	I cast my vote for 
+  	<%= f.association :candidate, collection: Candidate.where(position_id:@pos), label_method: :full_name, value_method: :id %>
+  	<%= f.input :comment, label: 'Comment:'%>
+  	<%= f.submit label: 'Cast Vote' %>
+<% end %>

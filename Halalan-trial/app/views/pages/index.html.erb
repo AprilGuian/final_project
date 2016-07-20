@@ -1,0 +1,39 @@
+<% provide(:home, "active") %> 
+<% provide(:title, "Home") %> 
+
+<div class ="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1><center>Current Vote Tally</center></h1>
+			<hr>
+			<%@positions.each do |p|%>
+				<h4><center><%=p.name%></center></h4>
+					<table class="table table-hover">
+						<thead>
+							<th width ="40%"><center>Name</center></th>
+							<th><center>Votes</center></th>
+						</thead>
+						<%total = 0%>
+						<%p.candidates.each do |c|%>
+							<%total = total+c.votes.count%>
+						<%end%>
+						<%p.candidates.each do |c|%>
+							<tr>
+								<td>
+									<center>
+										<%=link_to c.full_name, admin_candidate_path(c.id)%>
+									</center>
+								</td>
+								<td>
+									<center>
+										<%=c.votes.count%> votes | <progress value="<%=c.votes.count%>" max="<%=@users.count%>"> 
+									</center>
+								</td>
+							</tr>
+						<%end%>
+					</table>
+					<hr>
+			<%end%>
+		</div> 
+	</div>
+</div>

@@ -1,0 +1,31 @@
+<% provide(:position, "active") %>
+<% provide(:title, "Positions") %> 
+
+<div class ="container">
+	<div class="row">
+		<div class="col-md-12">
+			<center>
+				<h1>Positions</h1>
+				<%=link_to "Add New Position", new_admin_position_path%>
+			</center>
+			<%@positions.each do |p|%>
+			<hr>
+			<h3><center><%= link_to p.name, admin_position_path(p.id) %></center></h3>
+				<table class="table table-hover">
+					<thead>
+						<th><center>Name</center></th>
+					</thead>
+					<%p.candidates.each do |c|%>
+						<tr>
+							<td>
+								<center>
+									<%=link_to c.full_name, admin_candidate_path(c.id)%>
+								</center>
+							</td>
+						</tr>
+					<%end%>
+				</table>
+			<%end%>
+		</div> 
+	</div>
+</div>

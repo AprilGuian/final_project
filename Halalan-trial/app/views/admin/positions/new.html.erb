@@ -1,0 +1,15 @@
+<% provide(:position, "active") %>
+<% provide(:title, "New Position" ) %> 
+
+<div class="container">
+  	<div class="row">
+    	<div class="col-md-12">	
+			<h1>New Position</h1>
+
+			<%= render partial: "form" %>
+
+			<%= link_to "Back to Candidates", admin_candidates_path %>
+		</div>
+	</div>
+</div>
+

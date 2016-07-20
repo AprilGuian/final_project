@@ -1,0 +1,20 @@
+<div class ="container">
+  	<div class="row">
+	    <div class="col-md-12">	
+			<h2>Hey <%=current_user.first_name%>!</h2>
+			<br>
+			You Voted for:
+			<br>
+			<ul>
+				<%current_user.votes.each do |v|%>
+				<li>
+					<%="#{v.candidate.position.name}: #{v.candidate.full_name}"%>
+					<p>
+						Comments: <%=v.comment%>
+					</p>
+				</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+</div>
