@@ -2,6 +2,7 @@ module Admin
   class CandidatesController < ApplicationController
     before_action :authenticate_user!
     def index
+      @candidates = Candidate.all
       @positions = Position.all
       render "admin/candidates/index.html.erb"
     end
@@ -54,5 +55,6 @@ module Admin
     def candidate_params
       params.require(:candidate).permit!
     end
+    
   end
 end

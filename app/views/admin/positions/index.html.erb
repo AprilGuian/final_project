@@ -1,0 +1,32 @@
+<% provide(:position, "active") %>
+<% provide(:title, "Positions") %> 
+
+<style>
+	h1{
+		letter-spacing: 2px;
+	}
+</style>
+
+<div class ="container">
+	<div class="row">
+		<div class="col-md-12">
+			<left>
+				<h1>Positions</h1>
+				<div class="btn btn-info" role ="button">
+					<%=link_to "Create a Position", new_admin_position_path, :method => "get" %>
+				</div>
+			</left>
+
+			<% if @positions.size > 0 %>
+
+				<%@positions.each do |p|%>
+				<hr>
+				<h3><left><%= link_to p.name, admin_position_path(p.id) %></left></h3>
+
+				<%end%>
+			<% else %>
+				<h4>No created positions.</h4>
+			<% end %>
+		</div> 
+	</div>
+</div>

@@ -10,11 +10,16 @@ class Candidate < ApplicationRecord
     "#{ self.first_name } #{ self.last_name }"
   end
 
-  #def male_votes
-  #  votes.select { |vote| vote.user.gender == 'male' }
-  #end
+  def male_votes
+    votes.select { |vote| vote.user.gender == 'Male' }
+  end
 
-  #def female_votes
-  #  votes.select { |vote| vote.user.gender == 'female' }
-  #end
+  def female_votes
+    votes.select { |vote| vote.user.gender == 'Female' }
+  end
+
+  def others_votes
+    votes.select { |vote| vote.user.gender == 'Others' }
+  end
+
 end

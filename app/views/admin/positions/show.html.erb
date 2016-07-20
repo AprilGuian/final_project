@@ -1,0 +1,48 @@
+<% provide(:position, "active") %>
+<% provide(:title, "#{@position.name}" ) %> 
+
+<style>
+	p{
+		margin-bottom: 0;
+		padding-bottom: 0;
+	    display:inline;
+	}
+	h1{
+	    display:inline
+	}
+</style>
+
+<div class="container">
+  	<div class="row">
+    	<div class="col-md-12">	
+			<h1><font size="20"><%= @position.name%></font></h1>
+			<br>
+				<div class="btn btn-info" role ="button">
+					<%=link_to "Edit", edit_admin_position_path(@position.id)%>
+				</div>
+				<div class="btn btn-info" role ="button">
+					<%=link_to "Delete", admin_position_path(@position.id), method: :delete, data: {confirm: 'Are you sure?'}%>
+				</div>
+			<hr>
+			<h2>Candidates for <%=@position.name%></h2>
+
+			<% if @position.candidates.size > 0 %>
+				<ul>
+					<%@position.candidates.each do |c|%>
+					    <li><%=link_to c.full_name, admin_candidate_path(c.id)%></li>
+					<%end%>
+				</ul>
+			<%else%>
+				<h4>No Candidates for <%= @position.name%> </h4>
+				<div class="btn btn-info" role ="button">
+					<%= link_to "Add a Candidate", new_admin_candidate_path, :method => "get" %>
+				</div>
+				<br>
+
+			<%end%>
+			<br>
+
+			<%= link_to "Back to Positions", admin_positions_path %>
+		</div>
+	</div>
+</div>

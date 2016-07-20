@@ -2,6 +2,7 @@ module Admin
   class PositionsController < ApplicationController
     before_action :authenticate_user!
     def index
+
       @positions = Position.all
       render "admin/positions/index.html.erb"
     end
@@ -42,6 +43,7 @@ module Admin
     end
 
     def show
+      @candidates = Candidate.all
       @position = Position.find(params[:id])
       render "admin/positions/show.html.erb"
     end

@@ -1,0 +1,69 @@
+<% provide(:candidate, "active") %>
+<% provide(:title, "#{@candidate.full_name}" ) %> 
+
+<style>
+	p{
+
+	    display:inline;
+	}
+	h1{
+	    display:inline
+	}
+</style>
+
+<div class="container">
+  	<div class="row">
+    	<div class="col-md-12">	
+    		<br>
+			<h1><font size="20"><%= @candidate.full_name%></font></h1>
+				<br>
+				<div class="btn btn-info" role ="button">
+					<%=link_to "Edit", edit_admin_candidate_path(@candidate.id)%>
+				</div>
+				<div class="btn btn-info" role ="button">
+					<%=link_to "Delete", admin_candidate_path(@candidate.id), method: :delete, data: {confirm: 'Are you sure?'}%>
+				</div>
+				
+			<h2><%= @candidate.position.name %></h2>
+			<br>
+			<h3>"<%= @candidate.slogan%>"</h3>
+			<br>
+			<center>
+				<table class="table table-hover">
+					<h4>Gender of Voters</h4>
+					<tr>
+						<th><center>Male Voters</center></th>
+						<th><center>Female Voters</center></th>
+						<th><center>Other Voters</center></th>
+						<th><center>Total Votes</center></th>
+					</tr>
+					<tr>
+						<td><center> <%= @candidate.male_votes.size %> Votes <br> <progress value="<%= @candidate.male_votes.size %>" max="<%= @candidate.votes.count %>" ></center></td>
+						<td><center> <%= @candidate.female_votes.size %> Votes <br> <progress value="<%= @candidate.female_votes.size %>" max="<%= @candidate.votes.count %>" ></center></td>
+						<td><center><%= @candidate.others_votes.size %> Votes <br> <progress value="<%= @candidate.others_votes.size %>" max="<%= @candidate.votes.count %>" ></center></td>
+						<td><center><%= @candidate.votes.count %></center></td>
+					</tr>
+				</table>
+			</center>
+			<hr>
+			<% if @candidate.votes.count > 0 %>
+				<h3>Voters who voted for <%= @candidate.full_name%></h3>
+				<ul>
+					<li>
+						<% @candidate.votes.each do |v|%>
+						<%= "#{v.user.full_name}"%>
+						<br>
+						<p>
+							Comments: <%=v.comment%>
+						</p>
+					</li>
+					<%end%>
+				</ul>
+			<%else%>
+				<h3>No Voters.</h3>
+			<%end%>
+			<hr>
+			<%= link_to "Back to Candidates", admin_candidates_path %>
+		</div>
+	</div>
+</div>

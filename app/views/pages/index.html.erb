@@ -13,10 +13,6 @@
 							<th width ="40%"><center>Name</center></th>
 							<th><center>Votes</center></th>
 						</thead>
-						<%total = 0%>
-						<%p.candidates.each do |c|%>
-							<%total = total+c.votes.count%>
-						<%end%>
 						<%p.candidates.each do |c|%>
 							<tr>
 								<td>
